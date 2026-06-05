@@ -1,0 +1,8 @@
+interface:
+  display_name: "HK Stock Analysis"
+  short_description: "港股行情、技术面与消息面研究简报"
+  brand_color: "#0F766E"
+  default_prompt: "Use $hk-stock-analysis to analyze HK00700 as a Hong Kong stock research brief."
+
+policy:
+  allow_implicit_invocation: true
