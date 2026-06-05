@@ -1,7 +1,7 @@
 ---
 name: hk-stock-analysis
 description: Hong Kong stock research skill for OpenClaw; analyzes HK tickers only with market data, technical indicators, news, and a research-reference brief.
-metadata: version=1.0; market=HK; output=research-reference
+metadata: version=1.1; market=HK; output=research-reference
 ---
 
 # HK Stock Analysis
@@ -45,8 +45,31 @@ Normalize all valid tickers to `HKNNNNN` before analysis. Reject obvious non-HK 
    - HKEX announcements for the company.
    - Recent company news.
    - Sector or index context, including Hang Seng Index and Southbound Stock Connect when available.
-5. Run the Fact Check Gate using `references/fact-check-rules.md`.
-6. Write the final report using `references/output-format-template.md`.
+5. Apply HK market-specific modules using `references/hk-market-modules.md`.
+6. Apply industry-specific prompts using `references/industry-frameworks.md`.
+7. Run the Fact Check Gate using `references/fact-check-rules.md`.
+8. Write the final report using `references/output-format-template.md`.
+
+## HK Market Modules
+
+Read `references/hk-market-modules.md` before drafting the market, liquidity, valuation, and risk sections.
+
+Apply these modules conditionally:
+
+- Liquidity risk: apply to every HK stock, especially small caps, low-turnover names, resumed stocks, and event-driven stocks.
+- Southbound/Stock Connect: apply when the stock is Stock Connect eligible or when southbound flow is material to market context.
+- Short selling: apply when short-selling data is available or when the stock is a large-cap/liquid HK name.
+- AH premium: apply only when the company has both A-shares and H-shares; do not force AH analysis on single-listed HK stocks.
+- HK trading rules: consider T+0, no daily price limit, mature short-selling/borrow market, and thin liquidity where relevant.
+- Event-driven: apply to offers, placings, subscriptions, buybacks, dividends, index inclusion/removal, Stock Connect inclusion/removal, resumptions, acquisitions, disposals, and very large price moves.
+
+Do not turn these modules into trading instructions. Use `观察点`, `验证点`, and `风险点`, not `短线策略`, `中线策略`, or `长线策略`.
+
+## Industry Modules
+
+Read `references/industry-frameworks.md` after identifying the company industry. Use the closest matching framework only; if the industry is unclear, say so and use the general framework.
+
+Do not force every metric into every report. If a metric is unavailable, write `未取得可靠来源` rather than inventing data.
 
 ## Fact Check Gate
 
@@ -61,6 +84,8 @@ The final report must pass these checks:
 - Financial-year check: fiscal-year dates must follow the HKEX annual/interim report title, not inference from publish date.
 - Valuation check: PE, PB, dividend yield, market cap, and NAV-derived figures must either be recalculated from disclosed values or labeled as third-party source figures.
 - Event-driven check: for resumption, offer, placing, acquisition, disposal, liquidation, winding-up, or very large one-day moves, explicitly state that technical indicators have reduced reliability.
+- Liquidity check: always assess trading value, turnover, spread if available, free float if available, and whether liquidity makes valuation/technical signals less reliable.
+- Conditional module check: AH premium, Stock Connect, short-selling, and industry-specific metrics should appear only when applicable or when a reliable source is available.
 
 If a figure cannot be verified or reconciled, write `未取得可靠来源` or `第三方口径，未能复算`, and do not present it as confirmed fact.
 
@@ -83,7 +108,8 @@ Provider priority for HK stocks:
 ## Report Requirements
 
 - Start with a compact summary table.
-- Include market data snapshot, technical view, recent news/announcement context, market/sector context, risks, and a final research stance.
+- Include market data snapshot, liquidity risk, technical view, recent news/announcement context, market/sector context, risks, and a final research stance.
 - Include a `事实校验` section before the conclusion or evidence-weighting section.
+- Include industry-specific metrics when relevant and available.
 - Use evidence-weighted language: `supporting evidence`, `contradicting evidence`, `watch items`.
 - Avoid `买入`, `卖出`, `止损`, `目标价`, `仓位`, or similar direct trading instructions unless quoting a third-party analyst rating, and clearly label it as third-party.

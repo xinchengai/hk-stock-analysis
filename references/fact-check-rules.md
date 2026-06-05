@@ -58,12 +58,15 @@ Example:
 
 ## Announcements and Event-Driven Stocks
 
-For offers, subscriptions, placings, resumption, acquisitions, disposals, winding-up, liquidation, share consolidation, or very large one-day moves:
+For offers, subscriptions, placings, buybacks, dividends, index inclusion/removal, Stock Connect inclusion/removal, resumption, acquisitions, disposals, winding-up, liquidation, share consolidation, or very large one-day moves:
 
 - Find the HKEX announcement title, date, and link where possible.
 - Distinguish sale share price, offer price, subscription price, placing price, market price, and previous close.
 - Do not call a control transaction price a market-support level unless it is close to current market price and the source supports that interpretation.
 - State that technical indicators have reduced reliability when the price action is dominated by an event or when liquidity is extremely thin.
+- For buybacks, distinguish announced mandate, actual repurchase date, repurchase price range, number of shares, and cumulative repurchase amount.
+- For dividends, distinguish final, interim, special, ex-dividend date, record date, and payment date.
+- For index or Stock Connect changes, identify the effective date and whether the stock is added or removed.
 
 ## Financial Year and Financial Data
 
@@ -91,6 +94,25 @@ Rules:
 - If PE, PB, dividend yield, or market cap comes from a third-party data page and cannot be reconciled, label it `第三方口径，未能复算`.
 - Never mix a current market price with stale balance-sheet data without saying so.
 
+## Liquidity and Market Microstructure
+
+Rules:
+
+- Always discuss liquidity for HK stocks.
+- Prefer trading value over share volume when comparing liquidity across price levels.
+- If available, check 20-day average trading value, current-day trading value, turnover ratio, bid/ask spread, free float, and Stock Connect eligibility.
+- For small-cap, very low-turnover, resumed, or event-driven stocks, state that price can be heavily affected by sparse trading.
+- Do not treat low PE or low PB as attractive without checking trading value and corporate-governance/event risk.
+
+## Conditional HK Modules
+
+Rules:
+
+- AH premium applies only to dual-listed A/H companies. If not dual-listed, write `不适用`.
+- Southbound flow applies when Stock Connect data is available or when the company is Stock Connect eligible. If unavailable, write `未取得可靠来源`.
+- Short-selling data should be used for liquid names when available. If unavailable, do not infer short pressure from price action alone.
+- Sector metrics must match the company industry. Do not apply bank metrics to internet companies or PE/PB-only frameworks to platform companies.
+
 ## Required Output Checks
 
 Before finalizing, verify the report contains:
@@ -100,4 +122,5 @@ Before finalizing, verify the report contains:
 - Recomputed premium/discount when offers or transactions are discussed.
 - Recomputed price change when large daily moves are discussed.
 - A clear intraday/close label for market data.
+- Liquidity and conditional HK module status.
 - `未取得可靠来源` or `第三方口径，未能复算` for unverified figures.
